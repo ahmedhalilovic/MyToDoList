@@ -63,10 +63,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         // With this we open the screen where we can see item info and also delete it
+        let item = data[indexPath.row]
+        
+        guard let vc = storyboard?.instantiateViewController(identifier: "view") as?
+            ScreenViewController else {
+            return
+        }
+        
+        vc.item = item
+        vc.deletionHandler = { [weak self] in
+            self?.refresh()
+        }
+        
+        vc.title = item.item
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func didTapAddButton() {

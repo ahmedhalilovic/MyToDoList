@@ -47,6 +47,8 @@ class EntryViewController: UIViewController, UITextFieldDelegate {
             try! realm.commitWrite()
             
             completionHandler?()
+            // To exit from this view and go to list view of To do list items
+            navigationController?.popToRootViewController(animated: true)
             
         } else {
             print("Add something")
