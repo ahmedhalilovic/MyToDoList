@@ -93,7 +93,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         vc.title = "New Item"
         vc.navigationItem.largeTitleDisplayMode = .never
-        // Go back
+        // Go back the main screen when the save button is pressed
         navigationController?.pushViewController(vc, animated: true)
     }
     
