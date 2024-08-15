@@ -52,12 +52,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let item = data[indexPath.row]
-        //cell.textLabel?.text = data[indexPath.row].item
         
         // Try to use this below because textLabel will soon be depricated
         var contentConfiguration = cell.defaultContentConfiguration()
         contentConfiguration.text = item.item
-        contentConfiguration.secondaryText = DateFormatter.localizedString(from: item.date, dateStyle: .short, timeStyle: .short)
         cell.contentConfiguration = contentConfiguration
         
         return cell
@@ -95,6 +93,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         vc.title = "New Item"
         vc.navigationItem.largeTitleDisplayMode = .never
+        // Go back
         navigationController?.pushViewController(vc, animated: true)
     }
     
