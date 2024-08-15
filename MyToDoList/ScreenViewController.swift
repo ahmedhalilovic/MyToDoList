@@ -42,14 +42,24 @@ class ScreenViewController: UIViewController {
         guard let myItem = self.item else {
             return
         }
-
-        realm.beginWrite()
-        realm.delete(myItem)
-        try! realm.commitWrite()
-
-        deletionHandler?()
-        // To exit from this view and go to list view of To do list items
-        navigationController?.popToRootViewController(animated: true)
+        
+        let alert = UIAlertController(title: "Confirm deletion", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [self] _ in
+            
+            //Delete the item here
+            realm.beginWrite()
+            realm.delete(myItem)
+            try! realm.commitWrite()
+            
+            self.deletionHandler?()
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
     }
-
+    
 }
