@@ -97,6 +97,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    // Function to refresh data so the to-do list will be always up to date
     func refresh() {
         data = realm.objects(ToDoListItem.self).map({ $0 })
         table.reloadData()

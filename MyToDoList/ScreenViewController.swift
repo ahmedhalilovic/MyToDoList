@@ -18,6 +18,7 @@ class ScreenViewController: UIViewController {
     
     private let realm = try! Realm()
     
+    // Making formatter that converts between dates to string
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
@@ -38,6 +39,7 @@ class ScreenViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(didTapDelete))
     }
     
+    // Delete button when pressed deletes the to-do item. When delete button is pressed, a confirmation dialog will appear before deleting the item.
     @objc private func didTapDelete() {
         guard let myItem = self.item else {
             return
@@ -57,6 +59,7 @@ class ScreenViewController: UIViewController {
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
+        // Attaching action object to the alert
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)

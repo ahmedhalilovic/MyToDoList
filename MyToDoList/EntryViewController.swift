@@ -24,6 +24,7 @@ class EntryViewController: UIViewController, UITextFieldDelegate {
         
         datePicker.setDate(Date(), animated: true)
         
+        // Adding save button to the Navigation area
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(didTapSaveButton))
     }
     
@@ -33,7 +34,7 @@ class EntryViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    
+    // Button to save to-do text and date that is set
     @objc func didTapSaveButton() {
         if let text = textField.text, !text.isEmpty {
             let date = datePicker.date
